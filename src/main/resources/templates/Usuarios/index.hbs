@@ -1,0 +1,94 @@
+{{#partial "contenido" }}
+<link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">    
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<div class="container-md mt-5">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="text-center d-block">Listado de Usuarios</h2>
+        </div>
+        <div class="card-body">
+            <table id="datatable" class="table table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Nombre de Usuario</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Email</th>
+                        <th>Rol</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each usuarios}}
+                        <tr>
+                            <td>{{this.usuario}}</td>
+                            <td>{{this.nombre}}</td>
+                            <td>{{this.apellido}}</td>
+                            <td>{{this.mail}}</td>
+                            <td>{{this.rol.tipo}}</td>
+                            <td>
+     
+   <!--  //boton -->
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal-{{this.id}}">Modificar rol</button>
+                                
+                                        <div id="myModal-{{this.id}}" class="modal fade" role="dialog">
+                                            <div class="modal-dialog">
+                                            
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h3 class="modal-title">Elige un rol para {{this.nombre}}</h3>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                        <div class="modal-body">
+                                                            <form action="/usuarios/{{this.id}}/permiso" method="post">
+                                                                <div class="mb-3">
+                                                                    <label for="rol" class="form-label tipografia-label">Rol</label>
+                                                                    <select id="rol" name="rol" class="form-select" aria-label="Default select example" required>
+                                                                        <option value="" disabled selected>Selecciona un rol</option>
+                                                                        {{#each roles}}
+                                                                            <option value="{{this.id}}">{{this.nombre}}</option>
+                                                                        {{/each}}
+                                                                    </select>
+                                                                </div>
+                                                                <button type="submit" class="btn btn-primary">Guardar</button>
+                                                            </form>
+
+                                                        </div>
+                                                </div>
+                                                </div>
+                                            
+                                            </div>
+                                            </div>
+                                <a href="/usuarios/{{this.id}}" class="btn btn-primary d-block m-1"><i class="fa-regular fa-pen-to-square"></i>Ver perfil</a>
+                            </td>
+                        </tr>
+
+
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+                      <!-- Modal para modificar permisos -->
+
+
+
+
+</div>
+
+
+
+    {{#each usuarios}}
+
+    {{/each}}
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+<script src="js/datatable.js">
+{{/partial}}
+{{> templates/base }}

@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+<head>
+
+
+
+    <link rel="stylesheet" >
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/adm.css">
+
+    <title>Editar perfil de usuario</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/buttons/">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/checkout/">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/checkout/">
+
+    <link href="/docs/5.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+
+</head>
+<body class="bg-body-tertiary">
+
+<div class="container">
+    <main>
+        <div class="py-5 text-center">
+            <h2>Editar informacion personal</h2>
+        </div>
+
+        <div class="row g-5">
+
+
+
+
+            <div class="col-md-7 col-lg-8 mx-auto">
+
+                <!-- FORMULARIO DE DATOS PERSONALES -->
+
+                <h4 class="mb-3">Datos</h4>
+
+                <form method="POST" action= "/usuario" enctype="multipart/form-data" >
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <label for="Nombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" name="nombre" placeholder="" value="{{usuario.nombre}}" >
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="Apellido" class="form-label">Apellido</label>
+                            <input type="text" class="form-control" name="apellido" placeholder="" value="{{usuario.apellido}}">
+                        </div>
+
+
+
+                        <div class="col-12">
+                            <label for="email" class="form-label">Email <span class="text-body-secondary"></span></label>
+                            <input type="email" class="form-control" name="email"  value="{{usuario.mail}}" required>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label for="foto" class="form-label">Foto de usuario</label>
+                            <input type="file" class="form-control" id="foto" name="foto" accept="image/jpeg, image/png, image/gif">
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <label for="Medio de comunicacion" class="form-label">Medio de comunicacion</label>
+                            <select class="form-select" name="medioSelect" id="medioSelect" required>
+                                <option value="">Elegir...</option>
+                                <option value="whatsapp">Whatsapp</option>
+                                <option value="email">Email</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Please select a valid option.
+                            </div>
+                        </div>
+
+                        <div class="col-md-6" id="whatsappDiv" style="display: none;">
+                            <label for="whatsappInput" class="form-label">Número</label>
+                            <input type="text" class="form-control" name="whatsappInput" placeholder="" >
+
+                        </div>
+
+                        <div class="col-12">
+                            <label for="Descripcion" class="form-label">Descripcion</label>
+                            <textarea class="form-control" name="descripcion" rows="5" > {{usuario.descripcion}}</textarea>
+
+                        </div>
+{{!-- 
+                    <label class="form-label">Provincia</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">
+                            <span class="fa-solid fa-bell"></span>
+                        </span>
+                        <select required name="provincia" id="provincia" class="form-select" onchange="cargarMunicipiosYDepartamentos()">
+
+                            <option selected disabled>Seleccionar Provincia</option>
+                            {{#each provincias}}
+                                <option value="{{this.nombre}}">{{this.nombre}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+
+                    <label class="form-label">Municipio</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">
+                            <span class="fa-solid fa-bell"></span>
+                        </span>
+                        <select name="municipio" id="municipio" class="form-select">
+                            <option value="">Seleccionar Municipio</option>
+
+                        </select>
+                    </div>
+
+                    
+                    <label class="form-label">Departamento</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">
+                            <span class="fa-solid fa-bell"></span>
+                        </span>
+                        <select name="departamento" id="departamento" class="form-select">
+                            <option value="">Seleccionar Departamento</option>
+
+                        </select>
+                    </div>
+                    </div> --}}
+                        <hr class="my-4">
+
+                        <button class="w-100 btn btn-primary btn-lg" type="submit">Guardar</button>
+                    
+                </form>
+            </div>
+
+        </div>
+    </main>
+
+
+</div>
+
+
+<script src="../../js/restricciones.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../../js/new.js"></script>
+<script src="../../js/georef.js"></script>
+
+</body>
+</html>

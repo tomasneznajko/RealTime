@@ -1,0 +1,14 @@
+.gradient-custom-2 {
+    /* fallback for old browsers */
+    background: #1061a4;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgb(182, 189, 234), rgb(202, 211, 229));
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgb(83, 83, 189), rgba(166,193,238,1))
+}
+
+.descripcion-usuario {
+    margin-top: 20px; /* Ajusta este valor según tus necesidades */
+}

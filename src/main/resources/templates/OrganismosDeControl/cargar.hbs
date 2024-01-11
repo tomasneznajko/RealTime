@@ -1,0 +1,35 @@
+{{#partial "contenido" }}
+<div class="container-md mt-5">
+    <div class="card bg-dark text-white mx-auto p-3" style="border-radius: 1rem;">
+        <div class="card-body">
+            <h1 class="text-center">Cargar Organismos de Control</h1>
+            <hr/>
+            <div class="row">
+                <div class="col-12 col-lg-6 mb-2">
+                    <h3>Ejemplo de .txt:</h3>
+                    <div class="bg-light p-3 rounded">
+                    <pre class="text-dark" style="font-family: 'Courier New', monospace;">
+Organismo control 1, descripcion 1, Buenos Aires
+Organismo control 2, descripcion 2, Chaco
+Organismo control 3, descripcion 3, Misiones
+Organismo control 4, descripcion 4, Chubut
+                    ...
+                    </pre>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <form method="post" action="/cargar/organismosDeControl" enctype="multipart/form-data">
+                        <h3>Cargar archivo</h3>
+                        <p class="lead">Seleccione un archivo en fomato .txt con la estructura indicada</p>
+                        <div class="form-group mb-3">
+                            <input name="archivocsv" type="file" class="form-control" accept=".txt" required />
+                        </div>
+                        <button type="submit" class="btn btn-primary">Cargar Organismos</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{/partial}}
+{{> templates/base }}

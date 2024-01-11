@@ -1,0 +1,51 @@
+{{#partial "contenido" }}
+    <main class="container container-main">
+        <h1 class="main-title">Historial de incidentes - Comunidad: {{comunidad.nombre}}</h1>
+        <div class="table-responsive border-table ">
+            <table class="table table-sm table-shadow">
+                <thead class="table-light">
+                <tr>
+                    <th class="table__item">Observaciones</th>
+                    <th class="table__item">Autor</th>
+                    <th class="table__item">Servicio</th>
+                    <th class="table__item">Establecimiento</th>
+                    <th class="table__item">Estado</th>
+                    <th class="table__item"></th>
+                </tr>
+                </thead>
+
+                <tbody class="table-group-divider">
+                {{#each incidentes}}
+                    <tr class="center">
+                        <td class="table__item">{{this.observaciones}}</td>
+                        <td class="table__item">
+                            {{this.abridor.usuario}}
+                        </td>
+                        <td class="table__item">
+                            {{this.prestacionDeServicio.nombreServicio}}
+                        </td>
+                        <td class="table__item">
+                            {{this.establecimiento.nombre}}
+                        </td>
+                        <td class="table__item item__icon">
+                            {{#if this.abierto}}
+                                Abierto <iconify-icon icon="mingcute:check-fill" class="item__icon" style="color: green;"></iconify-icon>
+                            {{else}}
+                                Cerrado <iconify-icon icon="maki:cross" class="item__icon" style="color: red;"></iconify-icon>
+                            {{/if}}
+                        </td>
+                        <td class="table__item">
+                            <a href="incidentes/{{this.id}}">Ver más</a>
+                        </td>
+                    </tr>
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
+        <footer class="container button-along">
+            <a class="btn btn-dark button-back" href="/comunidades">Regresar <iconify-icon icon="ri:arrow-go-back-line" style="color: white;"></iconify-icon></a>
+        </footer>
+    </main>
+    
+{{/partial}}
+{{> templates/base}}

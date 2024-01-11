@@ -1,0 +1,42 @@
+{{#partial "contenido" }}
+    <div class="container-sm mt-5 mx-auto">
+        <div class="card bg-dark text-white mx-auto p-3" style="border-radius: 1rem; max-width:600px;">
+            <div class="card-body">
+                <h1 class="text-center mb-3">Iniciar sesión</h1>
+                <hr/>
+                <form method="POST" action="/login">
+                    <label class="form-label">Nombre de usuario</label>
+                    <div class="input-group mb-3">
+                    <span class="input-group-text">
+                        <span class="fas fa-user"></span>
+                    </span>
+                        <input name="nombreDeUsuario" type="text" class="form-control" placeholder="Nombre de Usuario" />
+                    </div>
+                    <label class="form-label">Contraseña</label>
+                    <div class="input-group mb-3">
+                    <span class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </span>
+                        <input name="contrasenia" type="password" class="form-control" placeholder="Contraseña" />
+                    </div>
+                    <button type="submit" class="btn btn-lg btn-primary w-100 mt-3">Ingresar</button>
+                </form>
+                <p class="text-center mt-2">¿No tenés un usuario? <a href="/register">Registrate</a></p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/js/alertas.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+    {{#if exito}}
+        <script type="text/javascript">
+            mostrarAlertaExito("{{exito}}");
+        </script>
+    {{/if}}
+    {{#if error}}
+        <script type="text/javascript">
+            mostrarAlertaError("{{error}}");
+        </script>
+    {{/if}}
+{{/partial}}
+{{> templates/baseLogin }}

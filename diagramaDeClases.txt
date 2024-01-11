@@ -1,0 +1,101 @@
+@startuml
+package "servicios publicos" <<Frame>>  {
+    class "Servicio Publico" {
+        -transporte: Transporte
+        -linea: Linea
+    }
+    "Servicio Publico" --> Transporte
+    "Servicio Publico" --> Linea
+
+    enum Transporte {
+        FERROCARRIL
+        SUBTERRANEO
+    }
+
+    class Linea {
+        -nombre: String
+        -origen: Estacion
+        -destino: Estacion
+        -estaciones: List<Estacion>
+    }
+
+    class Estacion {
+        -nombre: String
+        -centroide: Ubicacion
+        -servicios: List<Servicio>
+        +algunServicioNoPrestado(): Boolean
+        +agregarServicios(Servicio ... servicios)
+        +quitarServicios(Servicio ... servicios)
+    }
+    Estacion --o Linea
+}
+
+package servicios <<Frame>> {
+    class Ubicacion {
+        -latitud: Double
+        -longitud: Double
+    }
+    Ubicacion --> Estacion
+
+    abstract Servicio {
+        -funciona: Boolean
+        -nombre: String
+        +cambiarPrestacion(Boolean funciona): void
+    }
+    Servicio --o Estacion
+
+    class Escalador {
+        -origen: TipoTraslado
+        -destino: TipoTraslado
+        -tipoEscalador: TipoEscalador
+    }
+    Escalador --|> Servicio
+    Escalador --> TipoTraslado
+    Escalador --> TipoEscalador
+
+    enum TipoTraslado {
+        CALLE
+        BARRERA
+        ANDEN
+    }
+
+    enum TipoEscalador {
+        ASCENSOR
+        ESCALERA_MECANICA
+    }
+
+    class Banio {
+        -genero: String
+        -discapacitado: Boolean
+    }
+    Banio --|> Servicio
+}
+
+package comunidades <<Frame>> {
+    class Comunidad {
+        -administradores: List<Usuario>
+        -miembros: List<Usuario>
+        -nombre: String
+        +agregarServicio(Estacion establecimiento, Usuario administrador, String nombreDeServicio)
+        +quitarServicio(Estacion establecimiento, Usuario administrador, String nombreDeServicio)
+        +agregarAdministradores(Usuario ... administradores)
+        +quitarAdministradores(Usuario ... administradores)
+        +agregarMiembros(Usuario ... miembros)
+        +quitarMiembros(Usuario ... miembros)
+    }
+    Comunidad ..> Estacion
+
+    class Usuario {
+        -usuario: String
+        -clave: String
+        +esValida(String clave): Boolean
+        +registrarse(String usuario, String clave)
+    }
+    Usuario --o Comunidad
+    Usuario ..|> Validable
+
+    interface Validable {
+        +esValida(String clave): Boolean
+    }
+}
+@enduml

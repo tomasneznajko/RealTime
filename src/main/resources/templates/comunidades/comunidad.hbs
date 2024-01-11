@@ -1,0 +1,20 @@
+{{#partial "contenido" }}
+    <main class="container">
+        <h1 class="main-title">Apertura de incidente</h1>
+        <form action="/incidentes" method="POST">
+            <div class="mb-3">
+                <label for="prestacion" class="form-label tipografia-label">Prestación de servicio</label>
+                <select id="prestacion" name="prestacion" class="form-select" aria-label="Default select example">
+                    <option selected>Open this select menu</option>
+                    {{#each prestaciones}}
+                        <option value="{{this.id}}">{{this.nombreServicio}}</option>
+                    {{/each}}
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-success">Abrir nuevo incidente</button>
+        </form>
+        
+    </main>
+{{/partial}}
+{{> templates/base}}

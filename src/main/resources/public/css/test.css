@@ -1,0 +1,11 @@
+#map {
+    height: 400px;
+    /* Resta la altura de la barra de navegación */
+    width: calc(100% - 260px);
+    /* Resta el ancho de la barra lateral */
+    position: absolute;
+    top: 400px;
+    /* La misma altura que la barra de navegación */
+    right: 0;
+
+}

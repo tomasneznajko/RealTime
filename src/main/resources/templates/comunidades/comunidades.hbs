@@ -1,0 +1,86 @@
+{{#partial "contenido" }}
+    <main class="container separate">
+        <h1 class="main-title-comunidad">Comunidades</h1>
+
+        <section class="comunidades">
+            {{#each comunidadesMiembro}}
+
+                <div class="dropdown flex">
+                    <button class="btn btn-secondary dropdown-toggle pretty" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Comunidad: {{this.nombre}}
+                    </button>
+                    <div class="dropdown-menu complete" aria-labelledby="dropdownMenuButton">
+                        <div class="prod__box box-summary">
+                            <span class="box__line line__summary">
+                                <p class="summary__text">Descripción</p>
+                                <p>{{this.descripcion}}</p>
+                            </span>
+                            <span class="box__line line__summary">
+                                <p class="summary__text">Puntaje</p>
+                                <p>{{this.puntaje.valor}}</p>
+                            </span>
+                            <span class="box__line line__summary">
+                                <p class="summary__text">Grado de confianza</p>
+                                <p>{{this.puntaje.gradoDeConfianza.nombre}}{{#if this.puntaje.gradoDeConfianza.nivel}} {{this.puntaje.gradoDeConfianza.nivel}}{{/if}}</p>
+                            </span>
+                            <span class="box__line line__summary">
+                                <p class="summary__text">Cantidad de miembros</p>
+                                <p>{{this.cantidadDeMiembros}}</p>
+                            </span>
+                            <span class="box__line line__summary">
+                                <p class="summary__text">Cantidad de incidentes</p>
+                                <p>{{this.cantidadDeIncidentes}}</p>
+                            </span>
+                            <span class="box__line line__summary">
+                                <a href="comunidades/{{this.id}}/incidentes">Ver incidentes</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            {{/each}}
+
+        </section>
+
+        <section class="actions">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Unirse a nueva comunidad
+            </button>
+            <a class="btn btn-dark" href="/comunidades/analizadas">Ver posibles fusiones</a>
+        </section>
+
+        <!--/analizadas-->
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Unete a una nueva comunidad</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/comunidades" method="post">
+                        <div class="mb-3">
+                            <label for="comunidad" class="form-label tipografia-label">Comunidad</label>
+                            <select id="comunidad" name="comunidad" class="form-select" aria-label="Default select example" required>
+                                <option value="" disabled selected>Selecciona una comunidad</option>
+                                {{#each comunidades}}
+                                    <option value="{{this.id}}">{{this.nombre}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Unirse</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+
+    <script src="/js/comunidades.js"></script>
+    
+
+{{/partial}}
+{{> templates/base}}

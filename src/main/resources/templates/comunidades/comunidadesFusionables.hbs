@@ -1,0 +1,91 @@
+{{#partial "contenido" }}
+    <main class="container-main">
+        <h1 class="main-title-comunidad">Comunidades fusionables</h1>
+        
+
+            <section class="comunidades">
+                {{#if comunidades}}
+                    {{#each comunidades}}
+
+                        <div class="comunidades__item">
+                            {{#each this}}
+
+                                <div class="dropdown">
+                                    <button class=" btn-secondary dropdown-toggle pretty item__comunidad" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Comunidad: {{this.nombre}}
+                                    </button>
+                                    <div class="dropdown-menu complete" aria-labelledby="dropdownMenuButton">
+                                        <div class="prod__box box-summary">
+                                            <span class="box__line line__summary">
+                                                <p class="summary__text">Descripción</p>
+                                                <p>{{this.descripcion}}</p>
+                                            </span>
+                                            <span class="box__line line__summary">
+                                                <p class="summary__text">Puntaje</p>
+                                                <p>{{this.puntaje.valor}}</p>
+                                            </span>
+                                            <span class="box__line line__summary">
+                                                <p class="summary__text">Grado de confianza</p>
+                                                <p>{{this.puntaje.gradoDeConfianza.nombre}}{{#if this.puntaje.gradoDeConfianza.nivel}} - {{this.puntaje.gradoDeConfianza.nivel}}{{/if}}</p>
+                                            </span>
+                                            <span class="box__line line__summary">
+                                                <p class="summary__text">Cantidad de miembros</p>
+                                                <p>{{this.cantidadDeMiembros}}</p>
+                                            </span>
+                                            <span class="box__line line__summary">
+                                                <p class="summary__text">Cantidad de incidentes</p>
+                                                <p>{{this.cantidadDeIncidentes}}</p>
+                                            </span>
+                                            <span class="box__line line__summary">
+                                                <a href="/comunidades/{{this.id}}/incidentes">Ver incidentes</a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            {{/each}}
+
+                            <form class="button-along container__boton" action="/comunidades/fusionar" method="post">
+                                {{#each this}}
+                                    <input type="hidden" name="comunidad{{@index}}" value="{{this.id}}">
+                                {{/each}}
+                                <button type="submit" class="btn btn-danger">Fusionar</button>
+                            </form>
+
+
+                        </div>
+
+
+                    {{/each}}
+
+                {{else}}
+                    <div class="prod__box advice__box">
+                        <picture class="item__box item__img">
+                            <img src="/images/apu.png" alt="Apu TP">
+                        </picture>
+                        <div class="item__box item__text">
+                            <p class="item__title">
+                                No hay comunidades disponibles.
+                            </p>
+                            <p class="item__description">
+                                Gracias, vuelva prontos!!!
+                            </p>
+                            <a class="btn btn-dark item__link" href="/comunidades">Regresar <iconify-icon icon="ri:arrow-go-back-line" style="color: white;"></iconify-icon></a>
+                        </div>
+                        
+                    </div>
+                {{/if}}
+            </section>
+        {{#if comunidades}}
+            <footer class="container button-along">
+                <a class="btn btn-dark button-back" href="/comunidades">Regresar <iconify-icon icon="ri:arrow-go-back-line" style="color: white;"></iconify-icon></a>
+            </footer>
+        {{/if}}
+
+        
+
+    </main>
+
+    <script src="/js/comunidades.js"></script>
+
+{{/partial}}
+{{> templates/base}}

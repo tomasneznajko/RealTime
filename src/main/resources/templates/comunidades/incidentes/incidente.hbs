@@ -1,0 +1,118 @@
+{{#partial "contenido" }}
+    <main class="container container-main">
+        <h1 class="main-title">Incidente en {{incidente.prestacionDeServicio.nombreServicio}}</h1>
+        <section class="container section">
+            <article class="article">
+                <h3 class="section-title">Apertura</h3>
+                <div class="prod__box box-summary definitive__box">
+                    <span class="box__line line__summary">
+                        <p class="summary__text">Autor</p>
+                        <p>{{incidente.abridor.usuario}}</p>
+                    </span>
+                    <span class="box__line line__summary">
+                        <p class="summary__text">Fecha</p>
+                        <p>{{incidente.fachaYHoraApertura.toLocalDate}}</p>
+                    </span>
+                    <span class="box__line line__summary">
+                        <p class="summary__text">Hora</p>
+                        <p>{{incidente.fachaYHoraApertura.toLocalTime}}</p>
+                    </span>
+                    {{!-- <span class="box__line line__summary">
+                        <p class="summary__text">Comunidad origen</p>
+                        <p>{{incidente.comunidad.nombre}}</p>
+                    </span> --}}
+                </div>
+            </article>
+            {{#if incidente.abierto}}
+
+            {{else}}
+                <article class="article">
+                    <h3 class="section-title">Cierre</h3>
+                    <div class="prod__box box-summary definitive__box">
+                        <span class="box__line line__summary">
+                            <p class="summary__text">Autor</p>
+                            <p>{{incidente.cerrador.usuario}}</p>
+                        </span>
+                        <span class="box__line line__summary">
+                            <p class="summary__text">Fecha</p>
+                            <p>{{incidente.fechaYHoraCierre.toLocalDate}}</p>
+                        </span>
+                        <span class="box__line line__summary">
+                            <p class="summary__text">Hora</p>
+                            <p>{{incidente.fechaYHoraCierre.toLocalTime}}</p>
+                        </span>
+
+                    </div>
+                </article>
+            {{/if}}
+            
+            <article class="article">
+                <h3 class="section-title">Establecimiento</h3>
+                <div class="prod__box box-summary definitive__box">
+                    <span class="box__line line__summary">
+                        <p class="summary__text">Nombre</p>
+                        <p>{{incidente.establecimiento.nombre}}</p>
+                    </span>
+                    <span class="box__line line__summary">
+                        <p class="summary__text">Tipo de establecimiento</p>
+                        <p>{{incidente.establecimiento.tipoEstablecimiento}}</p>
+                    </span>
+                    <span class="box__line line__summary">
+                        <p class="summary__text">Localizacion</p>
+                        <p>
+                            {{incidente.establecimiento.localizacion.provincia.nombre}}
+                            {{#if incidente.establecimiento.localizacion.municipio}}
+                                - {{incidente.establecimiento.localizacion.municipio.nombre}}
+                            {{#if incidente.establecimiento.localizacion.departamento}}
+                                - {{incidente.establecimiento.localizacion.departamento.nombre}}
+                            {{/if}}
+                            {{/if}}
+                        </p>
+                    </span>
+                </div>
+            </article>
+            <article class="article">
+                <h3 class="section-title">Servicio afectado</h3>
+                <div class="prod__box box-summary definitive__box">
+                    <span class="box__line line__summary">
+                        <p class="summary__text">Nombre</p>
+                        <p>{{incidente.prestacionDeServicio.nombreServicio}}</p>
+                    </span>
+                    <span class="box__line line__summary">
+                        <p class="summary__text">Cantidad disponible</p>
+                        <p>{{incidente.prestacionDeServicio.cantidad}}</p>
+                    </span>
+                    <span class="box__line line__summary">
+                        <p class="summary__text">Tipo de servicio</p>
+                        <p>{{incidente.prestacionDeServicio.servicio.nombre}}</p>
+                    </span>
+                    <span class="box__line line__summary">
+                        <p class="summary__text">Descripcion</p>
+                        <p>{{incidente.prestacionDeServicio.servicio.descripcion}}</p>
+                    </span>
+                </div>
+            </article>
+            <article class="article {{#unless incidente.abierto}}complete{{/unless}}">
+                <h3 class="section-title">Observaciones</h3>
+                <div class="prod__box box-summary definitive__box">
+                    <p>
+                        {{incidente.observaciones}}
+                    </p>
+                </div>
+            </article>
+        </section>
+        <footer class="container button-along">
+            <a class="btn btn-dark button-back" href="/comunidades/{{comunidad.id}}/incidentes">Regresar <iconify-icon icon="ri:arrow-go-back-line" style="color: white;"></iconify-icon></a>
+
+            {{#if incidente.abierto}}
+                <form action="/comunidades/{{comunidad.id}}/incidentes/{{incidente.id}}" method="post">
+                    <button type="submit" class="btn btn-danger button-close">Cerrar incidente</button>
+                </form>
+            {{else}}
+            {{/if}}
+        </footer>
+    </main>
+    
+
+{{/partial}}
+{{> templates/base }}

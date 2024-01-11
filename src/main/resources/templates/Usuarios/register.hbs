@@ -1,0 +1,133 @@
+{{#partial "contenido" }}
+    <div class="container-sm mt-5 mx-auto">
+        <div class="card bg-dark text-white mx-auto p-3" style="border-radius: 1rem; max-width:800px;">
+            <div class="card-body">
+                <h1 class="text-center mb-3">Registrarse</h1>
+                <hr />
+                <form id="registroForm" method="POST" action="/register">
+                    <label class="form-label">Nombre de usuario</label>
+                    <div class="input-group mb-3">
+                    <span class="input-group-text">
+                        <span class="fas fa-user"></span>
+                    </span>
+                        <input required name="nombreDeUsuario" type="text" class="form-control" placeholder="Nombre de Usuario" />
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <label class="form-label">Nombre</label>
+                            <div class="input-group mb-3">
+                            <span class="input-group-text">
+                                <span class="fa-solid fa-file-signature"></span>
+                            </span>
+                                <input required name="nombre" type="text" class="form-control" placeholder="Nombre" />
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label class="form-label">Apellido</label>
+                            <div class="input-group mb-3">
+                            <span class="input-group-text">
+                                <span class="fa-solid fa-file-signature"></span>
+                            </span>
+                                <input required name="apellido" type="text" class="form-control" placeholder="Apellido" />
+                            </div>
+                        </div>
+                    </div>
+                    <label class="form-label">Email</label>
+                    <div class="input-group mb-3">
+                    <span class="input-group-text">
+                        <span class="fa-solid fa-envelope"></span>
+                    </span>
+                        <input required name="email" type="email" class="form-control" placeholder="Email" />
+                    </div>
+                    <label class="form-label">Medio de Notificación</label>
+                    <div class="input-group mb-3">
+                    <span class="input-group-text">
+                        <span class="fa-solid fa-bell"></span>
+                    </span>
+                        <select required name="medioNotificacion" id="medioNotificacion" class="form-select">
+                            <option selected disabled>Seleccionar Medio</option>
+                            <option value="email">Email</option>
+                            <option value="telefono">Telefono</option>
+                        </select>
+                    </div>
+                    <label class="form-label" id="telefonoLabel" style="display: none;">Teléfono</label>
+                    <div class="input-group mb-3" id="telefonoInput" style="display: none;">
+                    <span class="input-group-text">
+                        <span class="fa-solid fa-phone"></span>
+                    </span>
+                        <input required name="telefono" type="number" class="form-control" inputmode="numeric" placeholder="Teléfono" style="-webkit-appearance: none;" />
+                    </div>
+                    
+                    <label class="form-label">Provincia</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">
+                            <span class="fa-solid fa-bell"></span>
+                        </span>
+                        <select required name="provincia" id="provincia" class="form-select" onchange="cargarMunicipiosYDepartamentos()">
+
+                            <option selected disabled>Seleccionar Provincia</option>
+
+                            {{#each provincias}}
+                                <option value="{{this.nombre}}">{{this.nombre}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    
+                    <label class="form-label">Municipio</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">
+                            <span class="fa-solid fa-bell"></span>
+                        </span>
+                        <select name="municipio" id="municipio" class="form-select">
+                            <option value="">Seleccionar Municipio</option>
+
+                        </select>
+                    </div>
+
+                    
+                    <label class="form-label">Departamento</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">
+                            <span class="fa-solid fa-bell"></span>
+                        </span>
+                        <select name="departamento" id="departamento" class="form-select">
+                            <option value="">Seleccionar Departamento</option>
+
+                        </select>
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <label class="form-label">Contraseña</label>
+                            <div class="input-group mb-3">
+                            <span class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </span>
+                                <input required id="contrasenia" name="contrasenia" type="password" class="form-control" placeholder="Contraseña" />
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label class="form-label">Confirmar Contraseña</label>
+                            <div class="input-group mb-3">
+                            <span class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </span>
+                                <input required id="confirmarContrasenia" type="password" class="form-control" placeholder="Confirmar Contraseña" />
+                            </div>
+                        </div>
+                    </div>
+                    <ul id="errorContrasenia" class="text-danger fw-bold"></ul>
+                    <button type="submit" class="btn btn-lg btn-primary w-100 mt-3">Registrarse</button>
+                </form>
+                <p class="text-center mt-2">¿Ya tenés una cuenta? <a href="/login">Iniciá sesión</a></p>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="js/register.js"></script>
+    <script src="js/georef.js"></script>
+
+{{/partial}}
+{{> templates/baseLogin }}
