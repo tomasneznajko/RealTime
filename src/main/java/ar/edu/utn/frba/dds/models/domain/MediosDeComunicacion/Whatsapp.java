@@ -23,9 +23,9 @@ public class Whatsapp extends MedioDeNotificacion{
 
   private String telefono;
 
-  public static final String ACCOUNT_SID = "AC8248ee633b83070844ab4267e9269cb8";
+  public static final String ACCOUNT_SID = "AC579081dfb6f7c7b03ea1a0e7971dbc30";
 
-  public static final String AUTH_TOKEN = "fa45e420a9fe4186a4fe2f8e35a7c139";
+  public static final String AUTH_TOKEN = "803de05d6dfe7881bfca66c8f91045f0";
 
   public Whatsapp(){}
 
